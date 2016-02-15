@@ -9,5 +9,8 @@
       "css": [ "assets/me/res/me.css" ],
       "js": [ "assets/vendor/vendor.js", "assets/me/me.js" ]
     }
+  ],
+  "permissions": [
+    "https://api.douban.com/"
   ]
 }
