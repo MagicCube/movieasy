@@ -47,9 +47,21 @@ export default class DetailPluginApp extends mx.Application
         }
     }
 
+    removeFooter()
+    {
+        $("footer").remove();
+    }
+
     run()
     {
+        this.removeFooter();
         this.highlight1080p();
+        if (window.location.pathname.startsWith("/r_"))
+        {
+            const $tdown = $(".tdown");
+            const href = $tdown.find(".btn-primary").attr("href");
+            $(`<a href="http://yc.xunlei.com/?download=${encodeURIComponent(href)}" target="_blank" class="btn  btn-success btn-sm" style="margin-right: 5px;"><span class="ico ico_dlt" style="background-position: left -78px;"></span> 使用迅雷远程下载</a>`).insertBefore($tdown.find(".btn-danger"));
+        }
         this.getMovie().then(movie => {
             console.log(movie);
             this.movie = movie;
