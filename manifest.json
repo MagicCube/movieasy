@@ -1,0 +1,13 @@
+{
+  "name": "Movieasy",
+  "manifest_version": 2,
+  "version": "1.0.0",
+  "author": "Henry Li<henry1943@163.com>",
+  "content_scripts": [
+    {
+      "matches": ["http://pianyuan.net/*"],
+      "css": [ "assets/me/res/me.css" ],
+      "js": [ "assets/vendor/vendor.js", "assets/me/me.js" ]
+    }
+  ]
+}
