@@ -1,5 +1,3 @@
-import "./res/index.less";
-
 import DetailPluginApp from "./app/detail-plugin-app";
 
 let app = null;

@@ -6,7 +6,6 @@
   "content_scripts": [
     {
       "matches": ["http://pianyuan.net/*"],
-      "css": [ "assets/me/res/me.css" ],
       "js": [ "assets/vendor/vendor.js", "assets/me/me.js" ]
     }
   ],
