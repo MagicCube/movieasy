@@ -98,7 +98,7 @@ export default class DetailPluginApp extends mx.Application
     {
         const $main = $(".col-md-10.ms");
         dm.service.getMovieComments(this.movie.id).then($article => {
-            $main.append("<h1>短评</h1>");
+            $main.append("<h1>豆瓣热门短评</h1>");
             $main.append($article);
         });
     }
