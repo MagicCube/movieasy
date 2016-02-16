@@ -12,6 +12,7 @@ const fs = require("fs");
 const path = require("path");
 
 const webpack = require("webpack");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 // NOTE: All the paths defined in plugins are related to output.path.
 const plugins = [
@@ -24,7 +25,8 @@ const plugins = [
         name: "vendor",
         filename: "./vendor/vendor.js",
         minChunks: Infinity
-    })
+    }),
+    new ExtractTextPlugin("./[name]/res/[name].css")
 ];
 
 
@@ -68,6 +70,23 @@ module.exports = {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 loader: "babel-loader"
+            },
+            {
+                test: /\.css$/,
+                exclude: /node_modules/,
+                loader: ExtractTextPlugin.extract("style-loader", "css-loader")
+            },
+            {
+                test: /\.less$/,
+                loader: ExtractTextPlugin.extract("style-loader", "css-loader!less-loader")
+            },
+            {
+                test: /\.(png|jpg)$/,
+                loader: "url-loader?limit=10240"
+            },
+            {
+                test: /\.(ttf|eot|svg|woff)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                loader: "file-loader"
             }
         ]
     },

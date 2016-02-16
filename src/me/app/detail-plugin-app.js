@@ -1,3 +1,5 @@
+import "../res/index.less"
+
 import dm from "../../dm";
 
 export default class DetailPluginApp extends mx.Application
@@ -33,6 +35,15 @@ export default class DetailPluginApp extends mx.Application
         });
     }
 
+
+
+    addThunderButton()
+    {
+        const $tdown = $(".tdown");
+        const href = $tdown.find(".btn-primary").attr("href");
+        $(`<a href="http://yc.xunlei.com/?download=${encodeURIComponent(href)}" target="_blank" class="btn  btn-success btn-sm" style="margin-right: 5px;"><span class="ico ico_dlt" style="background-position: left -78px;"></span> 使用迅雷远程下载</a>`).insertBefore($tdown.find(".btn-danger"));
+    }
+
     highlight1080p()
     {
         const $rows = $(".related table tr");
@@ -58,13 +69,15 @@ export default class DetailPluginApp extends mx.Application
         this.highlight1080p();
         if (window.location.pathname.startsWith("/r_"))
         {
-            const $tdown = $(".tdown");
-            const href = $tdown.find(".btn-primary").attr("href");
-            $(`<a href="http://yc.xunlei.com/?download=${encodeURIComponent(href)}" target="_blank" class="btn  btn-success btn-sm" style="margin-right: 5px;"><span class="ico ico_dlt" style="background-position: left -78px;"></span> 使用迅雷远程下载</a>`).insertBefore($tdown.find(".btn-danger"));
+            this.addThunderButton();
         }
         this.getMovie().then(movie => {
             console.log(movie);
             this.movie = movie;
+            if (window.location.pathname.startsWith("/m_"))
+            {
+                this.renderComments();
+            }
             this.render();
         });
     }
@@ -77,5 +90,16 @@ export default class DetailPluginApp extends mx.Application
 
         $detail.append(`<li class="clearfix"><strong>豆瓣:</strong><div><a href="${this.movie.alt}" target="_blank" style="color:#337ab7;">查看详情</a></div></li>`);
         $detail.append(`<li class="clearfix"><strong>简介:</strong><div>${this.movie.summary}</div></li>`);
+    }
+
+
+
+    renderComments()
+    {
+        const $main = $(".col-md-10.ms");
+        dm.service.getMovieComments(this.movie.id).then($article => {
+            $main.append("<h1>短评</h1>");
+            $main.append($article);
+        });
     }
 }

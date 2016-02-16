@@ -14,8 +14,14 @@
   "license": "MIT",
   "devDependencies": {
     "babel-loader": "^5.4.0",
+    "css-loader": "^0.23.1",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.8.5",
     "jquery": "^2.2.0",
+    "less": "^2.6.0",
+    "less-loader": "^2.2.2",
     "mx6": "^6.0.8",
+    "style-loader": "^0.13.0",
     "url-loader": "^0.5.7",
     "webpack": "^1.12.13"
   }
