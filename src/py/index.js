@@ -1,11 +1,21 @@
 import DetailPluginApp from "./app/detail-plugin-app";
+import ListPluginApp from "./app/list-plugin-app";
 
+const path = window.location.pathname;
 let app = null;
-if (window.location.pathname.indexOf(".html") !== -1)
+if (path.indexOf(".html") !== -1)
 {
-    if (window.location.pathname.startsWith("/r_") || window.location.pathname.startsWith("/m_"))
+    if (path.startsWith("/r_") || path.startsWith("/m_"))
     {
         app = new DetailPluginApp();
-        app.run();
     }
+}
+else if (path.startsWith("/mv") || path.startsWith("/tv"))
+{
+    app = new ListPluginApp();
+}
+
+if (app)
+{
+    app.run();
 }

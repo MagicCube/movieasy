@@ -1,4 +1,4 @@
-import "../res/index.less"
+import "../res/index.less";
 
 import dm from "../../dm";
 
