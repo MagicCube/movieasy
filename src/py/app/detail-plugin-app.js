@@ -20,7 +20,11 @@ export default class DetailPluginApp extends mx.Application
             let q = null;
             if (window.location.pathname.startsWith("/m_"))
             {
-                q = document.title.replace(" 下载", "");
+                q = $(".detail .cl a").text();
+                if (!q)
+                {
+                    q = document.title.replace(" 下载", "");
+                }
             }
             else if (window.location.pathname.startsWith("/r_"))
             {
@@ -32,6 +36,13 @@ export default class DetailPluginApp extends mx.Application
                 return;
             }
             dm.service.searchMovie(q).then(subject => {
+                this.movie = subject;
+                this.addDoubanLink();
+                if (window.location.pathname.startsWith("/m_"))
+                {
+                    this.renderComments();
+                }
+
                 dm.service.getMovie(subject.id).then(movie => {
                     resolve(movie);
                 }, reject);
@@ -78,10 +89,7 @@ export default class DetailPluginApp extends mx.Application
         this.getMovie().then(movie => {
             console.log(movie);
             this.movie = movie;
-            if (window.location.pathname.startsWith("/m_"))
-            {
-                this.renderComments();
-            }
+
             this.render();
             this.renderScore();
         });
@@ -92,9 +100,13 @@ export default class DetailPluginApp extends mx.Application
     render()
     {
         const $detail = $("ul.detail");
-
-        $detail.append(`<li class="clearfix"><strong>豆瓣:</strong><div><a href="${this.movie.alt}" target="_blank" style="color:#337ab7;">查看详情</a></div></li>`);
         $detail.append(`<li class="clearfix"><strong>简介:</strong><div>${this.movie.summary}</div></li>`);
+    }
+
+    addDoubanLink()
+    {
+        const $detail = $("ul.detail");
+        $detail.append(`<li class="clearfix"><strong>豆瓣:</strong><div><a href="${this.movie.alt}" target="_blank" style="color:#337ab7;">查看详情</a></div></li>`);
     }
 
 
