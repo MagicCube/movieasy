@@ -55,7 +55,8 @@ module.exports = {
             "jquery",
             "mx6"
         ],
-        me: "./me"
+        py: "./py",
+        yc: "./yc"
     },
     output: {
         // webpack-dev-server will server output.path as output.publicPath

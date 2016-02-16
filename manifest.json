@@ -1,17 +1,18 @@
 {
-  "name": "Movieasy",
-  "manifest_version": 2,
-  "version": "1.0.0",
-  "author": "Henry Li<henry1943@163.com>",
-  "content_scripts": [
-    {
-      "matches": ["http://pianyuan.net/*"],
-      "css": ["assets/me/res/me.css"],
-      "js": [ "assets/vendor/vendor.js", "assets/me/me.js" ]
-    }
-  ],
-  "permissions": [
-    "http://movie.douban.com/",
-    "https://api.douban.com/"
-  ]
+    "name": "Movieasy",
+    "manifest_version": 2,
+    "version": "1.0.0",
+    "author": "Henry Li<henry1943@163.com>",
+    "content_scripts": [{
+        "matches": ["http://pianyuan.net/*"],
+        "css": ["assets/py/res/py.css"],
+        "js": ["assets/vendor/vendor.js", "assets/py/py.js"]
+    }, {
+        "matches": ["http://yc.xunlei.com/*"],
+        "js": [ "assets/vendor/vendor.js", "assets/yc/yc.js" ]
+    }],
+    "permissions": [
+        "http://movie.douban.com/",
+        "https://api.douban.com/"
+    ]
 }

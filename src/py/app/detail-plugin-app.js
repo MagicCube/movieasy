@@ -16,7 +16,7 @@ export default class DetailPluginApp extends mx.Application
             let q = null;
             if (window.location.pathname.startsWith("/m_"))
             {
-                q = $(".cl a").text();
+                q = document.title.replace(" 下载", "");
             }
             else if (window.location.pathname.startsWith("/r_"))
             {
@@ -98,7 +98,7 @@ export default class DetailPluginApp extends mx.Application
     {
         const $main = $(".col-md-10.ms");
         dm.service.getMovieComments(this.movie.id).then($article => {
-            $main.append("<h1>豆瓣热门短评</h1>");
+            $main.append("<h2 class='douban-comments'>豆瓣热门短评</h1>");
             $main.append($article);
         });
     }
