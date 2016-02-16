@@ -40,6 +40,7 @@ export default class ListPluginApp extends mx.Application
             this.$popup = $(`
                 <div class="me-movie-popup">
                     <h1><a target="_blank"></a></h1>
+                    <div class="rating"></div>
                     <ul class="info">
                         <li><strong>地区:</strong> <span class="countries"></span></li>
                         <li><strong>类型:</strong> <span class="genres"></span></li>
@@ -67,6 +68,11 @@ export default class ListPluginApp extends mx.Application
 
     hidePopup()
     {
+        if (this.timer)
+        {
+            window.clearTimeout(this.timer);
+            this.timer = null;
+        }
         if (this.$popup)
         {
             this.$popup.hide();
@@ -75,6 +81,11 @@ export default class ListPluginApp extends mx.Application
 
     renderPopup(movie)
     {
+        const rating = movie.rating.average;
+        const $rating = this.$popup.find(".rating");
+        $rating.html("<span class='bigstar" + Math.round(rating) / 2 * 10 + "'/><i class=sum/>");
+        $rating.find(".sum").html("<b>" + parseInt(rating) + "</b>." + Math.round((rating - parseInt(rating)) * 10));
+
         this.$popup.find("h1 a").text(movie.title + " (" + movie.year + ")").attr("href", movie.alt);
         this.$popup.find(".countries").text(movie.countries.join(", "));
         this.$popup.find(".genres").text(movie.genres.join(", "));
