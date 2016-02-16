@@ -83,7 +83,7 @@ export default class ListPluginApp extends mx.Application
     {
         const rating = movie.rating.average;
         const $rating = this.$popup.find(".rating");
-        $rating.html("<span class='bigstar" + Math.round(rating) / 2 * 10 + "'/><i class=sum/>");
+        $rating.html("<span class='bigstar" + movie.rating.stars + "'/><i class=sum/>");
         $rating.find(".sum").html("<b>" + parseInt(rating) + "</b>." + Math.round((rating - parseInt(rating)) * 10));
 
         this.$popup.find("h1 a").text(movie.title + " (" + movie.year + ")").attr("href", movie.alt);

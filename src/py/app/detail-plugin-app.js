@@ -8,6 +8,10 @@ export default class DetailPluginApp extends mx.Application
     {
         super();
         this.movie = null;
+
+        setTimeout(() => {
+            this.removeAds();
+        }, 500);
     }
 
     getMovie()
@@ -79,6 +83,7 @@ export default class DetailPluginApp extends mx.Application
                 this.renderComments();
             }
             this.render();
+            this.renderScore();
         });
     }
 
@@ -93,6 +98,19 @@ export default class DetailPluginApp extends mx.Application
     }
 
 
+    renderScore()
+    {
+        let $score = $(".score");
+        if ($score.length === 0)
+        {
+            $score = $("<div class=score style='margin-top: 15px'/>");
+            $score.insertBefore(".minfo .detail li:first-child");
+        }
+        const rating = this.movie.rating.average;
+        $score.html("<span class='bigstar" + this.movie.rating.stars + "'/><i class=sum/>");
+        $score.find(".sum").html("<b>" + parseInt(rating) + "</b>." + Math.round((rating - parseInt(rating)) * 10));
+    }
+
 
     renderComments()
     {
@@ -101,5 +119,11 @@ export default class DetailPluginApp extends mx.Application
             $main.append("<h2 class='douban-comments'>豆瓣热门短评</h1>");
             $main.append($article);
         });
+    }
+
+
+    removeAds()
+    {
+        $("#tanx-popwin-outermm_43673937_12566574_48120532,#tanxssp_con_mm_43673937_12566574_48100943").remove();
     }
 }
