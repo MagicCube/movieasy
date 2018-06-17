@@ -4,7 +4,7 @@
   "description": "A plugin for building a bridge between Pianyuan.net and Douban",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack"
   },
   "keywords": [
     "pianyuan",
