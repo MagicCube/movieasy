@@ -1,10 +1,13 @@
+const API_KEY = "0df993c66c0c636e29ecbb5344252a4a";
+
 class ServiceAgent
 {
     getMovie(id)
     {
         return new Promise((resolve, reject) => {
             $.ajax({
-                url: "https://api.douban.com/v2/movie/subject/" + id
+                url: "https://api.douban.com/v2/movie/subject/" + id,
+                data: { apikey: API_KEY }
             }).success(resolve)
               .fail(reject);
         });
@@ -29,7 +32,7 @@ class ServiceAgent
         return new Promise((resolve, reject) => {
             $.ajax({
                 url: "https://api.douban.com/v2/movie/search",
-                data: { q: keyword, count },
+                data: { apikey: API_KEY, q: keyword, count },
             }).success(result => {
                 if (result.count === 1)
                 {
